@@ -1,0 +1,3 @@
+//#include "filename2.txt"
+
+int x,y,z;

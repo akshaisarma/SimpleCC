@@ -1,0 +1,10 @@
+void main() {
+    char a[256];
+    int i;
+    for (i = 0; i <= 256; i = i + 1) { // At i = 256, should cause range check error
+        a[i] = i;
+        print "The array at i has: "; print a[i]; print "\n";
+    }
+    // This should never be printed
+    print 'A';
+}

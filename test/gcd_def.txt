@@ -1,0 +1,20 @@
+
+void gcd() {
+    int t;
+    // Testing empty statement and xor swap
+    if (gcd_num1 <= gcd_num2)
+        ;
+    else {
+        gcd_num1 = gcd_num1 ^ gcd_num2;
+        gcd_num2 = gcd_num1 ^ gcd_num2;
+        gcd_num1 = gcd_num1 ^ gcd_num2;
+    }
+    t = gcd_num1;
+    while (1) {
+        if ( !(gcd_num1 % t) && !(gcd_num2 % t) ) 
+            goto fin;
+        t = t - 1;
+    }
+    fin:
+        gcd_ret = t;
+}

@@ -1,0 +1,26 @@
+void main() {
+    int apple;
+    apple = 'a';
+    print "The int apple: "; print apple; print "\n\n";
+    {
+        double apple;
+        apple = 5.23;
+        print "The double apple: "; print apple; print "\n\n";
+        {
+            char apple;
+            apple = 'z';
+            print "The char apple: "; print apple; print "\n\n";
+        }
+        {
+            int apple;
+            apple = 12345;
+            print "The second int apple : "; print apple; print "\n\n";
+            {
+                int apple ;
+                apple = 54321;
+                print "The third int apple : "; print apple; print "\n\n";
+            }
+        }
+    }
+    print "The original int apple: "; print apple; print "\n\n";
+}

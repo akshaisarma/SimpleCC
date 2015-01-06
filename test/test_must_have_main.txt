@@ -1,0 +1,9 @@
+int global;
+global = 12390;
+
+/* Uncomment this after testing once
+void main() {
+   // main(); // This should also be caught...
+   // void main(); // This should be caught as the parser trying to match '}'
+}
+*/

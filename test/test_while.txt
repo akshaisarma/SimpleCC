@@ -1,0 +1,12 @@
+void main() {
+    double pi;
+    pi = 3.14159265;
+    int i;
+    i = 1;
+    while (i <= 10) {
+        print "The area of a circle with radius "; print i; print " is: ";
+        print pi*i*i; print "\n";
+        i = i + 1;
+    }
+
+}

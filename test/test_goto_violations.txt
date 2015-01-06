@@ -1,0 +1,22 @@
+
+void main() {
+    int i;
+    i = 25;
+    print "Compilation should not finish due to block violations up ahead...";
+    {{{{{goto lab;}}}}}
+    {
+        lab:
+    }
+    
+    /*
+    //Then try this. This is the other kind of goto violation.
+    goto skip_inf_loop;
+    {
+        int i;
+        i = 1;
+        while (i) // Infinite loop
+            i = i<<1;
+        skip_inf_loop:
+    }
+     */
+}

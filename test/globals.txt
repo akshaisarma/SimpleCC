@@ -1,0 +1,8 @@
+// Fibonacci
+int fib_par;
+int fib_ret;
+
+//  GCD
+int gcd_num1;
+int gcd_num2;
+int gcd_ret;

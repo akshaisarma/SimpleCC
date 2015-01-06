@@ -1,0 +1,14 @@
+/*
+THIS IS A COMMENT 
+*/
+
+int x,y;
+y = 10.234;
+x = 16#FF;
+y = 10;
+
+//The following line contains an invalid C statement
+10.23423424;
+
+while (x < 12)
+	x--; 

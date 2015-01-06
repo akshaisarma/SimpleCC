@@ -1,0 +1,21 @@
+// Globals MUST come before function definitions.
+#include "globals.txt"
+#include "fib_def.txt"
+#include "gcd_def.txt"
+
+void main() {
+    int i;
+    print "Calculating the first forty fibonacci numbers...\n\n";
+    for (i = 1; i <= 40; i = i+1) {
+        fib_par = i;
+        fib();
+        print "The "; print i; print " fibonacci number is: \t"; print fib_ret; print "\n\n";
+    }
+    
+    print "Calculating the gcd of two large numbers...\n\n";
+    gcd_num1 = 20600;
+    gcd_num2 = 3090;
+    print "The gcd of "; print gcd_num1; print " and "; print gcd_num2; print " is: ";    
+    gcd();
+    print gcd_ret; print "\n\n"; print "Done ... \n\n";
+}

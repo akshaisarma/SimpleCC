@@ -1,0 +1,31 @@
+void main() {
+    char a ;
+    a = '-';
+    switch (a) {
+    case '0' .. '9':
+        print "a is a number. \n";
+    case 'a' .. 'z':
+        print "a is a lowercase alphabet. \n";
+    case 'A' .. 'Z':
+        print "a is a uppercase alphabet. \n";
+    case '+':
+        print "a is a plus. \n";
+    case '-': {
+        print "a is a dash. \n";
+        char b;
+        b = '_';
+        switch (b) {
+            case 'a' .. 'z':
+                print "b is a lowercase alphabet. \n";
+            case 'A' .. 'Z':
+                print "b is a uppercase alphabet. \n";
+            default:
+                print "b is a secret alphabet. \n";
+        }
+    }
+    default :
+        print "a has an unknown value. \n";
+    
+    }
+
+}

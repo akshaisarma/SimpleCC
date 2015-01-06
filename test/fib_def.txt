@@ -1,0 +1,11 @@
+
+void fib() {
+    int f, s;
+    int t;
+    for (f = 1, s = 1; fib_par > 2; fib_par = fib_par - 1) {
+        t = f + s;
+        f = s;
+        s = t;
+    }
+    fib_ret = s;
+}

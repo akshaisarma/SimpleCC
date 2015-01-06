@@ -1,0 +1,102 @@
+Akshai Sarma
+CSc 420
+Professor Vulis
+
+C Compiler (a hybrid of Pascal and C with some other influences)
+=================================================================
+
+I compiled my compiler using gcc 4.2.1. I have had issues compiling with gcc 3.6 and below. 
+
+I have provided some test cases in the tests folder. I have included the unix executables in the bin folder (produced on my mac) 
+just in case, you are unable to compile, for some reason. Theoretically, you should be able to figure out how to use the compiler 
+simply by starting to write code and understanding error messages. The test cases cover major features of the compiler but not all.
+
+Compile everything in the compiler folder to form the compiler.
+
+Compile everything in the stackmachine folder to form the stackmachine.
+
+Pass one file to the compiler executable (the one file can include other files). Place the resulting file, output.o, (if no 
+errors) next to the stackmachine executable. Simply run the stackmachine (no need to pass in output file).
+
+Expression Grammar:
+
+L: ==, !=, <, >, <=, >= 
+E: +,-,||,|,^
+T: *,/, %, &&,&,<<,>>
+F: (E),+, -,~,id,constant, array[E]  
+
+
+Features/Notes
+===============
+
+* Detailed error messages for practically all cases with source information is provided in all parts of the compiler.
+
+Scanner
+-------
+
+- Full string escape support. Octals as \000 and hex as \x00. They need to be of this format, not variable length. However
+  do not use them anywhere but in print statements as char arrays do not store string literals like they do in C.
+
+- Can write numbers in any base 1 - 35. Format: base#val. Ex: 16#FF. Can do regular decimals. Can write e instead of . for    
+  decimals.
+
+- Overflow checking
+
+- All line endings for different systems supported. Certain chars such as @, $, ` are not allowed outside literals.
+
+- Full include capabilities but beware of the global restriction (noted below in the parser section).
+
+Parser
+------
+
+- Full scoping rules are implemented. Block scope fully working.
+
+- Range checking implemented. Did not provide a switch to turn it off. A 9 byte instruction will always be generated for
+  array accesses. 
+  
+- Declarations seperate from initialization. Do not do int i = 10; Instead do, int i; i = 10;
+
+- Assignments are NOT part of expressions unlike C.
+
+- Do not declare arrays with regular variables. Also, one array per declaration. Do not do int i, j, k[];
+  Instead do, int i, j; int k[];
+  
+- Included operations like bit shifting etc but was not tested. Please do not rely on them. Constructs like i += 1 or i++ are 
+  scanned correctly but are not implemented.
+  
+- There are only two real types: INT and DOUBLE. Strings are only literals used in print statements. Chars are simply ints
+  and take the same space. I did this to simplify code generation.
+  
+- All statements like if else, do while, while, for, goto are supported. Empty statements supported. Block statements supported.
+
+- Created my own print statement. Format is: print <var name> | <array access> | <char|str|int|double literal> ;
+
+- Full goto support with block checking.
+
+- Switch statement does not use breaks and therefore does not do the cases falling into each other style of C. HOWEVER,
+  ranges are implemented. Note that the spaces before and after the ellipses are required for the scanner to not pick them up 
+  as numbers. Write them like this: case 1 .. 100: { } or case 1 .. 100: ;
+  Gotos are not supported inside switch statements due to stack balancing issues.
+  I do not use jump tables.
+  
+- Procedures are supported. Functions are NOT, so no locals on stack and no recursion. All functions therefore must begin with
+  void and have no parameters. Simply declare global variables and pass/return values through them. However, for a program, the 
+  globals MUST be declared first and initialized (if needed to). Once the function declarations and definitions start, you may not 
+  declare globals. This is because code must be generated for the initializations and declarations of the global variables and a jump 
+  statement be written to jump into the main function (which is strictly checked for. Cannot compile without a main function). If 
+  globals are interleaved with the functions, then there is no way to reach the latter globals as only procedures can be called from 
+  main and the program halts after main. I deliberately did this to force some structure to the syntax.
+  
+Code Generator
+--------------
+
+- All instructions are one byte and are stored onto char arrays. Data is also a char array. Type checking is done and appropriate 
+  warnings generated if required. I store my print statement strings into a string segment as I did not like putting null 
+  terminators for the strings in my code segment.
+  
+- Defines for tokens were moved to a different range to not collide with the defines for opcodes.
+  
+Stack Machine
+-------------
+  
+- Stack machine is fast because memory is not deallocated when stack shrinks. It is done at the end...
